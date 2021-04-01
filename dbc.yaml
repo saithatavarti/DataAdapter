@@ -1,0 +1,8 @@
+development:
+  adapter: oracle
+  database: xe
+  pool: 5
+  username: system
+  password: saicool988
+query:
+    select  * from first
