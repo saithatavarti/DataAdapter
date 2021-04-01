@@ -1,0 +1,18 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: library
+  pool: 5
+  username: root
+  password: 17557pavan$
+  socket: /tmp/mysql.sock
+query:
+  columns: isbn,author
+  table: book
+  where: availability=1
+  limit: 3
+  order: author asc
+  group: author
+
+    
