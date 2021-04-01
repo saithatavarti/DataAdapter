@@ -1,0 +1,11 @@
+# passing parameters
+development:
+  adapter: mysql+mysqldb
+  port: 3308
+  database: hr
+  username: root
+  password: root
+  
+ 
+query:
+    select * from employee
