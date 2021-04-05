@@ -1,0 +1,11 @@
+development:
+  db_type: postgresql
+  database_port: 5432
+  database_user: postgres
+  adapter: postgresql+psycopg2
+  username : postgres
+  password : invoker
+  database : invoker
+
+query:
+  select * from students

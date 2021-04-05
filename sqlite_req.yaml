@@ -1,0 +1,15 @@
+#Database requirements
+development:
+  db_type: sqlite
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: medusa
+  pool: 5
+  username: 
+  password:
+  socket: /tmp/mysql.sock
+
+#Custom query
+query:
+  SELECT * FROM students_sqlite

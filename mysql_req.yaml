@@ -1,0 +1,13 @@
+development:
+  db_type: mysql
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: invoker
+  pool: 5
+  username: root
+  password: root
+  socket: /tmp/mysql.sock
+  
+query:
+  select * from students    
