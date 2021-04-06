@@ -1,0 +1,22 @@
+parameters:
+    # database connection "default"
+    # database_driver:   pdo_pgsql
+    # database_host:     localhost
+    database_port:     5432
+    database_user:     postgres
+    adapter: postgresql+psycopg2
+    username : postgres
+    password : chillale
+    database : krish
+
+query:
+  column: "*"
+  table: student
+  where:
+  limit: 
+  order: 
+  group: 
+  page_size: 10 
+
+user:
+  select * from username
