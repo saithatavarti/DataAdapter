@@ -1,0 +1,5 @@
+parameters:
+    adapter: mssql+pyodbc
+    username : LAPTOP-CMNLMDRF\SQLEXPRESS
+    database : students
+    drivers: SQL Server
