@@ -3,11 +3,14 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: invoker
+  database: sys
   pool: 5
   username: root
   password: root
   socket: /tmp/mysql.sock
   
+page_size:
+  page_size: "10"
+
 query:
-  select * from students    
+  select * from auction

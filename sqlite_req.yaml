@@ -9,6 +9,7 @@ development:
   username: 
   password:
   socket: /tmp/mysql.sock
+  offset_increment: 5
 
 #Custom query
 query:
