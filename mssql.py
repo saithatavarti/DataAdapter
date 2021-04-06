@@ -27,5 +27,7 @@ def test(choose_id):
     conn = engine.connect()
     result = conn.execute("select * from details").fetchall()
     return(result)
+
+    
     
     
