@@ -6,6 +6,13 @@ development:
   username: root
   password: root
   
+  
  
 query:
-    select * from employee
+  columns: "*"
+  table: employee
+  where: 
+  limit: 
+  order: 
+  group:
+  page_size: 10
