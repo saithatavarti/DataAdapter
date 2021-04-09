@@ -25,18 +25,30 @@ async def get_component(choose_id,b,c):
 	pagesize=str(documents["development"]["pagesize"])
 	dbs=documents["development"]["database"]
 	query=str(documents["query"])
-	query1=query.replace("*","count(*)")
+	query2=str(documents['query2'])
+	print('the output of query2 is {}'.format(query2))
+	vb=query2.split()
+	if('group' in vb):
+		query1=query2.replace('*','count(count(*))')
+	else:
+		query1=query2.replace("*","count(*)")
+	print(query1)
 	link=adapter+"://"+username+":"+password+"@localhost:1521/"+dbs
 	engine = create_engine(link)
 	connection=engine.connect()
 	total_count= connection.execute(query1).fetchall()
 	print(query1)
 	print(query)
-	query=query+' where rownum<={} minus {} where rownum<={}'.format(e,query,d)
+	if (('where' in vb) or ('group by' in vb)):
+		# query='select * from employee'
+		query='select * from ({}) where rownum<={} minus select * from ({}) where rownum<={}'.format(query2,e,query2,d)
+	else:
+		# query='select * from employee'
+		query=query2+' where rownum<={} minus {} where rownum<={}'.format(e,query2,d)
 	print('the query string is {}'.format(query))
 	print('the value of e is {} and total colunt is {} '.format(e,total_count[0][0]))
 	if (int(e)==int(total_count[0][0])):
-		nxt=" "
+		nxt="end of pages "
 		print("hello")
 	elif((int(e)+(int(e)-int(d)))<=total_count[0][0]):
 		nxt="/oracledata/{}/{}/{}".format(a,e,int(e)+(int(e)-int(d)))

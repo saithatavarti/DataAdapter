@@ -3,7 +3,9 @@ development:
   database: xe
   pool: 5
   pagesize: 15
-  username: system
-  password: saicool988
+  username: xe
+  password: xe
 query:
   select * from first
+query2:
+   select * from employee where id<5 group by id
