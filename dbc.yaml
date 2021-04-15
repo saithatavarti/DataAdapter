@@ -5,14 +5,19 @@ development:
   database: hr
   username: root
   password: root
+  url: http://127.0.0.1:8000/
+
+query:
+  code: select * from employee
   
   
  
-query:
-  columns: "*"
-  table: employee
-  where: 
-  limit: 
-  order: 
-  group:
-  page_size: 10
+# query:
+#   columns: "*"
+#   table: employee
+#   where: 
+#   limit: 
+#   order: 
+#   group:
+#   page_size: 10
+
