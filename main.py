@@ -54,7 +54,7 @@ def get_component(database,choose_id,username,min,offset):
         else:
             total_pages=int((f)/page)+1
         
-        url="next_url=="+url+database+"/"+choose_id+"/"+str(lower+page)+"/"+str(upper+page)
+        url="next_url=="+url+database+"/"+choose_id+"/"+us+"/"+str(lower+page)+"/"+str(upper+page)
         print(min,max)
         data="data:"
         meta="meta:"
