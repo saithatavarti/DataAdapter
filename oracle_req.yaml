@@ -1,0 +1,10 @@
+development:
+  db_type: oracle
+  adapter: oracle
+  database: xe
+  pool: 5
+  username: system
+  password: invoker
+
+query:
+  select  * from students

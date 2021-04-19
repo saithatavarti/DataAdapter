@@ -1,0 +1,12 @@
+#Database requirements
+development:
+  db_type: sqlite
+  database: medusa
+  # offset_increment: 5
+
+#Custom query
+query:
+  SELECT * FROM students_sqlite
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
