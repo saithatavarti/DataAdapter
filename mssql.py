@@ -15,8 +15,9 @@ def index():
     return {'data':{'name':'krishna'}}
 
 
-@app.get("/{choose_id}/{min}/{offset}")
-def test(choose_id,min,offset):
+@app.get("/{username}/{choose_id}/{min}/{offset}")
+def test(username,choose_id,min,offset):
+    user = username
     url = choose_id
     lower=int(min)
     upper=int(offset)
@@ -55,14 +56,20 @@ def test(choose_id,min,offset):
 
     str1="next_url== "+address+url+"/"+str(lower+page)+"/"+str(upper+page)
     print(min,max)
-    data= "data: "
-    meta= "meta: "
+    data= "data:"
+    meta= "meta:"
+    end = "end of pages"
+    pageno = "page number: " + str(int(upper/page))
+
+
 
 
     if((upper/page)>total_pages):
         return("end of pages")
+    elif((upper/page) == total_pages):
+        return data,lst,meta ,pageno,end
     else:
-        return data,lst,{meta , total_pages,str1}
+        return data,lst,meta , total_pages,str1
 
     
 

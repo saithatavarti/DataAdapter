@@ -13,10 +13,10 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/{choose_id}/{username}/{minimum}/{offset}")
-async def get_component(choose_id,username,minimum,offset):
+@app.get("/{username}/{choose_id}/{minimum}/{offset}")
+async def get_component(username,choose_id,minimum,offset):
 	url = choose_id
-	us = username
+	user = username
 	lower= int(minimum)
 	upper= int(offset)
 	min = int(offset)-int(minimum)+1
@@ -44,7 +44,7 @@ async def get_component(choose_id,username,minimum,offset):
 	
 	engine = create_engine(link,echo=False)
 	connection=engine.connect()
-	userQuery = "select * from username where name = '{0}' ".format(us)
+	userQuery = "select * from username where name = '{0}' ".format(user)
 	print (userQuery)
 	usercheck = connection.execute(userQuery).fetchall()
 	print(usercheck)
@@ -59,15 +59,19 @@ async def get_component(choose_id,username,minimum,offset):
 		else:
 			total_pages=int((f)/page)+1
 		
-		str1="next_url== "+address+url+"/"+us+"/"+str(lower+page)+"/"+str(upper+page)
+		str1="next_url== "+address+url+"/"+user+"/"+str(lower+page)+"/"+str(upper+page)
 		print(min,max)
-		data= "data: "
-		meta= "meta: "
+		data= "data:"
+		meta= "meta:"
+		pageno = "pagenumber:" + str(int(upper/page))
+		end = "end of pages"
 
 		if((upper/page)>total_pages):
 			return("end of pages")
+		elif((upper/page) == total_pages):
+			return data,lst,meta ,end,pageno
 		else:
-			return data,lst,{meta ,total_pages,str1}
+			return data,lst,meta,str1,pageno,total_pages
 	else:
 		return "User Does not Exists"
    
