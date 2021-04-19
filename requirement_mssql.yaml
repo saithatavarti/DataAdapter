@@ -1,0 +1,21 @@
+#Database requirements
+development:
+  db_type: mssql
+  database: students
+  adapter: mssql+pyodbc
+  username: LAPTOP-CMNLMDRF\SQLEXPRESS
+  password: 
+  port: 5432
+  url: http://127.0.0.1:8000/
+  drivers: SQL Server
+
+#Custom query
+query:
+  code: select * from details
+  user: select name from userdb where name =
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
+
+authentication_query:
+  select name from user where name =
