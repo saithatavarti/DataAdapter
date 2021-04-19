@@ -1,0 +1,11 @@
+development:
+  adapter: mysql
+  database: sys
+  username: root
+  password: 17557pavan$
+  url: http://127.0.0.1:8000/
+query:
+  code: select * from auction
+  
+
+    
