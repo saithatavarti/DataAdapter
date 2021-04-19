@@ -14,7 +14,7 @@ def read_root():
 @app.get("/{username}/{choose_id}/{min}/{offset}")
 def get_component(username,choose_id,min,offset):
 
-    us=username
+    user =username
     with open(choose_id+'.yaml') as file:
         documents = yaml.safe_load(file)
     lower=int(min)
@@ -26,6 +26,7 @@ def get_component(username,choose_id,min,offset):
     username=str(documents["development"]["username"])
     password=str(documents["development"]["password"])
     query=str(documents["query"]["code"])
+    user_query=str(documents["query"]["user"])
     dbs=documents["development"]["database"]
     port = str(documents["development"]["port"])
     url=str(documents["development"]["url"])
@@ -40,7 +41,7 @@ def get_component(username,choose_id,min,offset):
 	    	
     engine = create_engine(link)
     connection=engine.connect()
-    userQuery="select * from users where Name='{0}'".format(us)
+    userQuery = user_query+"'"+user+"'"
     print(userQuery)
     usercheck = connection.execute(userQuery).fetchall()
     print(usercheck)
@@ -54,7 +55,7 @@ def get_component(username,choose_id,min,offset):
         else:
             total_pages=int((f)/page)+1
         
-        url="next_url=="+url+us+"/"+choose_id+"/"+str(lower+page)+"/"+str(upper+page)
+        url="next_url=="+url+user+"/"+choose_id+"/"+str(lower+page)+"/"+str(upper+page)
         print(min,max)
         data="data:"
         meta="meta:"

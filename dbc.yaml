@@ -9,6 +9,7 @@ development:
 
 query:
   code: select * from employee
+  user: select name from users where name =
   
   
  
