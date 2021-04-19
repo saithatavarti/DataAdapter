@@ -27,8 +27,9 @@ def get_component(username,choose_id,min,offset):
     password=str(documents["development"]["password"])
     query=str(documents["query"]["code"])
     dbs=documents["development"]["database"]
+    port = str(documents["development"]["port"])
     url=str(documents["development"]["url"])
-    link=adapter+"://"+username+":"+password+"@localhost:3308/"+dbs+"?charset=utf8mb4"
+    link=adapter+"://"+username+":"+password+"@localhost:"+port+"/"+dbs+"?charset=utf8mb4"
     
     
     if(max<0 or min<0):
