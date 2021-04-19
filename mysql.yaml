@@ -6,6 +6,7 @@ development:
   url: http://127.0.0.1:8000/
 query:
   code: select * from auction
+  user: select name from user where name =
   
 
     

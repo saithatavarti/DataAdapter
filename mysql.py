@@ -18,6 +18,7 @@ def fun(user_name,file_name,min_limit,max_limit):
 	username=str(documents["development"]["username"])
 	password=str(documents["development"]["password"])
 	query=str(documents["query"]["code"])
+	user_query=str(documents["query"]["user"])
 	dbs=str(documents["development"]["database"])
 	page=max
 	url=str(documents["development"]["url"])
@@ -27,34 +28,36 @@ def fun(user_name,file_name,min_limit,max_limit):
 		return("limit is given wrong")
 	else:
 		query1=query+" "+"limit"+" "+str(min)+","+str(max)
-	
+	user_query=user_query+"'"+user+"'"
 	import json
 	from sqlalchemy import create_engine
 	engine = create_engine(link)
 	connection=engine.connect()
 	output = connection.execute(query1).fetchall()
 	count = len(connection.execute(query).fetchall())
+	auth=connection.execute(user_query).fetchall()
+	if(auth):
+		count=int(count)
+		if(count%int(page)==0):
+			total_pages=int(count/page)
+		else:
+			total_pages=int(count/page)+1
 	
-	count=int(count)
-	if(count%int(page)==0):
-		total_pages=int(count/page)
+		url="next_url:"+url+user+"/"+f+"/"+str(lower+page)+"/"+str(upper+page)
+		print(min,max)
+		data="data:"
+		meta="meta:"
+		end="end of pages"
+		page_number="page_num:" + str(int(upper/page))
+		if((upper/page)>total_pages):
+			return("end of pages")
+		elif(int(upper/page)==total_pages):
+			return data,output,meta,end,page_number
+		else:
+			pages="total_pages: "+str(total_pages)
+			return data,output,meta,url,page_number,pages
 	else:
-		total_pages=int(count/page)+1
-	
-	url="next_url:"+url+user+"/"+f+"/"+str(lower+page)+"/"+str(upper+page)
-	print(min,max)
-	data="data:"
-	meta="meta:"
-	end="end of pages"
-
-	page_number="page_num:" + str(int(upper/page))
-	if((upper/page)>total_pages):
-		return("end of pages")
-	elif(int(upper/page)==total_pages):
-		return data,output,meta,end,page_number
-	else:
-		pages="total_pages: "+str(total_pages)
-		return data,output,meta,url,page_number,pages
+		return "user does not exist"
 
 	
     
