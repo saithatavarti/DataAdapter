@@ -11,8 +11,8 @@ def read_root():
     return {"Hello": "World"}
 
 # dynamic method for opting a yaml file 
-@app.get("/{database}/{choose_id}/{username}/{min}/{offset}")
-def get_component(database,choose_id,username,min,offset):
+@app.get("/{username}/{choose_id}/{min}/{offset}")
+def get_component(username,choose_id,min,offset):
 
     us=username
     with open(choose_id+'.yaml') as file:
@@ -22,7 +22,6 @@ def get_component(database,choose_id,username,min,offset):
     min=int(min)-1
     max=int(offset)-int(min)
     page=upper-lower+1
-    database=str(database)
     adapter=str(documents["development"]["adapter"])
     username=str(documents["development"]["username"])
     password=str(documents["development"]["password"])
@@ -54,7 +53,7 @@ def get_component(database,choose_id,username,min,offset):
         else:
             total_pages=int((f)/page)+1
         
-        url="next_url=="+url+database+"/"+choose_id+"/"+us+"/"+str(lower+page)+"/"+str(upper+page)
+        url="next_url=="+url+us+"/"+choose_id+"/"+str(lower+page)+"/"+str(upper+page)
         print(min,max)
         data="data:"
         meta="meta:"
@@ -69,6 +68,6 @@ def get_component(database,choose_id,username,min,offset):
         else:
             pages="total_pages: "+str(total_pages)
             # vb= jsonable_encoder(data)
-            return data,output,meta,pages,page_number,url
+            return data,output,meta,url,page_number,pages
     else:
         return "user does not exists"
