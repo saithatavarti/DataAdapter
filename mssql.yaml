@@ -6,4 +6,5 @@ parameters:
     address : http://127.0.0.1:8000/
 
 query:
-  select * from details
+  code: select * from details
+  user: select name from username where name =

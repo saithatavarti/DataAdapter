@@ -32,7 +32,8 @@ def test(username,choose_id,min,offset):
     driver = str(documents["parameters"]["drivers"])
     db = documents["parameters"]["database"]
     address = str(documents["parameters"]["address"])
-    query=str(documents["query"])
+    query=str(documents["query"]["code"])
+    user_query=str(documents["query"]["user"])
     print(query)
     query2=query.replace("*","top {} * ".format(min))
     print(query2)
@@ -46,30 +47,39 @@ def test(username,choose_id,min,offset):
     
     engine = sal.create_engine(link)
     conn = engine.connect()
-    lst = conn.execute(finalquery).fetchall()
-    lst1 = len(conn.execute(query).fetchall())
-    f = int(lst1)
-    if(f%int(page)==0):
-        total_pages=int(f/page)
+    user_query = user_query+"'"+user+"'"
+
+    usercheck = conn.execute(user_query).fetchall()
+    print(usercheck)
+
+    if usercheck:
+        lst = conn.execute(finalquery).fetchall()
+        lst1 = len(conn.execute(query).fetchall())
+        f = int(lst1)
+        if(f%int(page)==0):
+            total_pages=int(f/page)
+        else:
+            total_pages=int((f)/page)+1
+
+        str1="next_url== "+address+url+"/"+str(lower+page)+"/"+str(upper+page)
+        print(min,max)
+        data= "data:"
+        meta= "meta:"
+        end = "end of pages"
+        pageno = "page number: " + str(int(upper/page))
+
+
+
+
+        if((upper/page)>total_pages):
+            return("end of pages")
+        elif((upper/page) == total_pages):
+            return data,lst,meta ,pageno,end
+        else:
+            return data,lst,meta , total_pages,str1
     else:
-        total_pages=int((f)/page)+1
+        return "User Does not Exists"
 
-    str1="next_url== "+address+url+"/"+str(lower+page)+"/"+str(upper+page)
-    print(min,max)
-    data= "data:"
-    meta= "meta:"
-    end = "end of pages"
-    pageno = "page number: " + str(int(upper/page))
-
-
-
-
-    if((upper/page)>total_pages):
-        return("end of pages")
-    elif((upper/page) == total_pages):
-        return data,lst,meta ,pageno,end
-    else:
-        return data,lst,meta , total_pages,str1
 
     
 

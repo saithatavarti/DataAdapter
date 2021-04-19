@@ -13,10 +13,10 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/{username}/{choose_id}/{minimum}/{offset}")
-async def get_component(username,choose_id,minimum,offset):
+@app.get("/{user_name}/{choose_id}/{minimum}/{offset}")
+async def get_component(user_name,choose_id,minimum,offset):
 	url = choose_id
-	user = username
+	user = user_name
 	lower= int(minimum)
 	upper= int(offset)
 	min = int(offset)-int(minimum)+1
@@ -32,6 +32,7 @@ async def get_component(username,choose_id,minimum,offset):
 	port = str(documents["parameters"]["database_port"])
 	address = str(documents["parameters"]["address"])
 	query = str(documents["query"]["code"])
+	user_query = str(documents["query"]["user"])
 	link =""
 	link = adapter+"://"+username+":"+password+"@localhost:"+port+"/"+db
 
@@ -44,7 +45,7 @@ async def get_component(username,choose_id,minimum,offset):
 	
 	engine = create_engine(link,echo=False)
 	connection=engine.connect()
-	userQuery = "select * from username where name = '{0}' ".format(user)
+	userQuery = user_query+"'"+user+"'"
 	print (userQuery)
 	usercheck = connection.execute(userQuery).fetchall()
 	print(usercheck)

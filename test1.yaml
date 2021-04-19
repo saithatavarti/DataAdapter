@@ -10,6 +10,7 @@ parameters:
 
 query:
   code : select * from student
+  user: select * from username where name =
  
 
 user:
