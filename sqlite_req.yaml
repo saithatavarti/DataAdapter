@@ -1,0 +1,14 @@
+#Database requirements
+development:
+  db_type: sqlite
+  database: medusa
+
+#Custom query
+query:
+  SELECT * FROM students_sqlite
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
+
+authentication_query:
+  SELECT * FROM users_dataadapter

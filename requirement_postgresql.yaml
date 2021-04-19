@@ -1,0 +1,21 @@
+#Database requirements
+development:
+  db_type: postgresql
+  database: invoker
+  adapter: postgresql
+  username: postgres
+  password: invoker
+  port: 5432
+  url: http://127.0.0.1:8000/
+  drivers: 
+
+#Custom query
+query:
+  code: select * from students
+  user: select name from users where name =
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
+
+authentication_query:
+  select name from users_dataadapter where name =

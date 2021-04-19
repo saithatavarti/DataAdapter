@@ -1,0 +1,12 @@
+# passing parameters
+development:
+  db_type: mariadb
+  adapter: mysql+mysqldb
+  port: 3308
+  database: storm
+  username: root
+  password: root
+  
+ 
+query:
+    select * from students

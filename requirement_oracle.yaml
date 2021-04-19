@@ -1,0 +1,21 @@
+#Database requirements
+development:
+  db_type: oracle
+  database: xe
+  adapter: oracle
+  username: system
+  password: invoker
+  port: 1521
+  url: http://127.0.0.1:8000/
+  drivers: SQL Server
+
+#Custom query
+query:
+  code: select * from first
+  user: select name from users where name =
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
+
+authentication_query:
+  select name from users_dataadapter where name =

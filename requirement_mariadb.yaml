@@ -1,0 +1,20 @@
+development:
+  db_type: mariadb
+  database: storm
+  adapter: mysql+mysqldb
+  username: root
+  password: root
+  port: 3306
+  url: http://127.0.0.1:8000/
+  drivers: SQL Server
+
+#Custom query
+query:
+  code: select * from students
+  user: select name from users where name =
+
+count_query:
+  SELECT COUNT(*) AS count FROM students_sqlite
+
+authentication_query:
+  select name from users_dataadapter where name =
