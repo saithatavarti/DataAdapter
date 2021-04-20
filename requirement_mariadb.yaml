@@ -12,9 +12,3 @@ development:
 query:
   code: select * from students
   user: select name from users where name =
-
-count_query:
-  SELECT COUNT(*) AS count FROM students_sqlite
-
-authentication_query:
-  select name from users_dataadapter where name =

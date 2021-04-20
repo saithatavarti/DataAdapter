@@ -13,9 +13,3 @@ development:
 query:
   code: select * from details
   user: select name from userdb where name =
-
-count_query:
-  SELECT COUNT(*) AS count FROM students_sqlite
-
-authentication_query:
-  select name from user where name =

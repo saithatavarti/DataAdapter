@@ -1,0 +1,15 @@
+development:
+  db_type: sqlite
+  database: medusa
+  adapter: 
+  username: 
+  password: 
+  port: 
+  url: http://127.0.0.1:8000/
+  drivers: 
+
+#Custom query
+query:
+  code: select * from students_sqlite
+  user: select name from users_dataadapter where name =
+  count: SELECT COUNT(*) AS count FROM students_sqlite

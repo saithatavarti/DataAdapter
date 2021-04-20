@@ -14,7 +14,7 @@ app = FastAPI()
 def start():
     return{"Message" : "Please enter a YAML filename in URL to return JSON data"}
 
-with open("requirement_postgresql.yaml") as req:
+with open("requirement_sqlite.yaml") as req:
     document = yaml.safe_load(req)
     db_type = str(document["development"]["db_type"])
 
@@ -35,12 +35,13 @@ with open("requirement_postgresql.yaml") as req:
             try:
                 with open(my_value) as req:
                     document = yaml.safe_load(req)
+                    url = str(document["development"]["url"])
                     db_name = str(document["development"]["database"])
-                    authentication_query = str(document["authentication_query"])
+                    authentication_query = str(document["query"]["user"])
                     authentication_query = authentication_query  +  "'" + username + "'" 
                     query = str(document["query"]["code"])
                     query = query +" " + "LIMIT" + " " + str_offset + "," + str_limit
-                    count_query = str(document["count_query"])
+                    count_query = str(document["query"]["count"])
                     conn_link = "sqlite:///" + db_name + ".db"
                     engine = create_engine(conn_link, connect_args={'check_same_thread': False})
                     connection = engine.connect()
@@ -54,7 +55,7 @@ with open("requirement_postgresql.yaml") as req:
                     current_page = int((int_offset/int_limit) + 1)
                     current_page = "Current Page No." + str(current_page)
                     new_offset = int_offset + offset_increment
-                    link = "Link to next records : http://127.0.0.1:8000" + "/" + str(my_value) + "/" + str(username) + "/" + str(new_offset) + "/" + str(str_limit)
+                    link = "Link to next records :" + url + str(username) + "/" + str(my_value) + "/" + str(new_offset) + "/" + str(str_limit)
                     if(int_offset < count):
                         if(username == authentication_result):
                             return (result,link,total_pages,current_page)
